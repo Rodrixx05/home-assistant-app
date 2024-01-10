@@ -1,0 +1,6 @@
+.env
+/hass
+/nodered
+/zigbee2mqtt
+/mariadb
+/mosquitto
