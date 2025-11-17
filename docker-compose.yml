@@ -29,8 +29,6 @@ services:
   nodered:
     container_name: nodered
     image: nodered/node-red
-    ports:
-      - "1880:1880"
     volumes:
       - ./nodered:/data
     depends_on:
@@ -39,6 +37,7 @@ services:
     environment:
       TZ: "Europe/Madrid"
     restart: always
+    network_mode: host
   mosquitto:
     image: eclipse-mosquitto
     container_name: mosquitto
@@ -80,3 +79,15 @@ services:
       - TZ=Europe/Madrid
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0
+  esphome:
+    container_name: esphome
+    image: ghcr.io/esphome/esphome
+    volumes:
+      - ./esphome:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: always
+    privileged: true
+    network_mode: host
+    environment:
+      - USERNAME=Rodrixx
+      - PASSWORD=${ESPHOME_PASSWORD}
