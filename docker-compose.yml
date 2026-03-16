@@ -21,11 +21,12 @@ services:
       MYSQL_USER: homeassistant
       MYSQL_PASSWORD: "${HA_MYSQL_PASSWORD}"
       PUID: ${PUID}
-      PGID: ${GUID}
+      PGID: ${PGID}
     volumes:
       - ./mariadb:/config
     ports:
       - "3306:3306"
+
   nodered:
     container_name: nodered
     image: nodered/node-red
